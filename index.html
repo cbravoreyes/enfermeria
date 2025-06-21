@@ -7,7 +7,7 @@
 </head>
 <body style="margin:0;padding:0;">
 <div id="ia-enfermeria-app" style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 15px; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-  <h2 style="text-align:center; color:#007B8A;">Herramientas de IA para la Enfermería</h2>
+  <h2 style="text-align:center; color:#007B8A;">Herramientas de IA para la carrera de Enfermería</h2>
   <p style="font-size: 16px;">Selecciona un área de interés para generar un prompt que consultará qué herramientas de IA son útiles en esa área.</p>
 
   <label for="areaSelect" style="display:block; margin-top:10px; font-weight:bold;">Área de Enfermería:</label>
@@ -56,7 +56,7 @@
     } else if (llm === "perplexity") {
       url = `https://www.perplexity.ai/search?q=${prompt}`;
     } else if (llm === "grok") {
-      url = `https://grok.x.ai/?q=${prompt}`;
+      url = `https://grok.com/?q=${prompt}`;
     }
     window.open(url, '_blank');
   }
