@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA para Enfermería</title>
+</head>
+<body style="margin:0;padding:0;">
+<div id="ia-enfermeria-app" style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 15px; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+  <h2 style="text-align:center; color:#007B8A;">Herramientas de IA para la Enfermería</h2>
+  <p style="font-size: 16px;">Selecciona un área de interés para generar un prompt que consultará qué herramientas de IA son útiles en esa área.</p>
+
+  <label for="areaSelect" style="display:block; margin-top:10px; font-weight:bold;">Área de Enfermería:</label>
+  <select id="areaSelect" style="width:100%; padding:10px; font-size:16px; margin-bottom:15px;">
+    <option value="">-- Selecciona un área --</option>
+    <option value="Valoración del paciente">Valoración del paciente</option>
+    <option value="Procedimientos de enfermería">Procedimientos de enfermería</option>
+    <option value="Fundamentos teóricos y éticos">Fundamentos teóricos y éticos</option>
+    <option value="Educación y comunicación con el paciente">Educación y comunicación con el paciente</option>
+    <option value="Enfermería basada en la evidencia">Enfermería basada en la evidencia</option>
+  </select>
+
+  <button onclick="generarPrompt()" style="width:100%; padding:12px; background-color:#007B8A; color:white; font-size:16px; border:none; border-radius:5px; margin-bottom:15px;">Generar Prompt</button>
+
+  <div id="promptBox" style="display:none; margin-bottom:15px;">
+    <p style="font-weight:bold;">Prompt generado:</p>
+    <textarea id="promptTexto" readonly style="width:100%; height:100px; padding:10px; font-size:15px; border:1px solid #ccc; border-radius:5px;"></textarea>
+  </div>
+
+  <div id="botonesLLM" style="display:none;">
+    <p style="font-weight:bold;">Consultar en:</p>
+    <button onclick="abrirEn('chatgpt')" style="width:100%; padding:10px; margin-bottom:10px; background-color:#10a37f; color:white; border:none; border-radius:5px;">🔍 ChatGPT</button>
+    <button onclick="abrirEn('perplexity')" style="width:100%; padding:10px; margin-bottom:10px; background-color:#5c6bc0; color:white; border:none; border-radius:5px;">🔍 Perplexity</button>
+    <button onclick="abrirEn('grok')" style="width:100%; padding:10px; background-color:#f9a825; color:black; border:none; border-radius:5px;">🔍 Grok</button>
+  </div>
+</div>
+
+<script>
+  function generarPrompt() {
+    const area = document.getElementById("areaSelect").value;
+    if (!area) {
+      alert("Por favor selecciona un área.");
+      return;
+    }
+    const prompt = `¿Qué herramientas de inteligencia artificial pueden ser útiles para el desarrollo académico y práctico en el área de ${area} en una carrera universitaria de Enfermería?`;
+    document.getElementById("promptTexto").value = prompt;
+    document.getElementById("promptBox").style.display = "block";
+    document.getElementById("botonesLLM").style.display = "block";
+  }
+
+  function abrirEn(llm) {
+    const prompt = encodeURIComponent(document.getElementById("promptTexto").value);
+    let url = "";
+    if (llm === "chatgpt") {
+      url = `https://chat.openai.com/?q=${prompt}`;
+    } else if (llm === "perplexity") {
+      url = `https://www.perplexity.ai/search?q=${prompt}`;
+    } else if (llm === "grok") {
+      url = `https://grok.x.ai/?q=${prompt}`;
+    }
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
